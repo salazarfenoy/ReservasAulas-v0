@@ -4,12 +4,6 @@ public class Aula {
 	private String nombre;
 
 	public Aula(String nombre) {
-		if (nombre == null) {
-			throw new IllegalArgumentException("El nombre del aula no puede ser nulo.");
-		}
-		if (nombre == "") {
-			throw new IllegalArgumentException("El nombre del aula no puede estar vacío.");
-		}
 		setNombre(nombre);
 	}
 	public Aula(Aula aula) {
@@ -22,6 +16,12 @@ public class Aula {
 		return nombre;
 	}
 	private void setNombre(String nombre) {
+		if (nombre == null) {
+			throw new IllegalArgumentException("El nombre del aula no puede ser nulo.");
+		}
+		if (nombre == "") {
+			throw new IllegalArgumentException("El nombre del aula no puede estar vacío.");
+		}
 		this.nombre = nombre;
 	}
 	@Override
