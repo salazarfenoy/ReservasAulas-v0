@@ -1,17 +1,23 @@
 package vista;
 
+import java.time.format.DateTimeFormatter;
+
+import org.iesalandalus.programacion.gestionclientes.modelo.dominio.DatosPersonales;
+import org.iesalandalus.programacion.reservasaulas.Aula;
+import org.iesalandalus.programacion.reservasaulas.Profesor;
+import org.iesalandalus.programacion.reservasaulas.Tramo;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
-	private static final DateTimeFormatter FORMATO_DIA = new DateTimeFormatter();
-	private static final DatosContacto DATOS_CONTACTO_FICTICIOS = new DatosContacto("950111111", "1@1.es", DIRECCION_POSTAL_FICTICIA);
+	private static final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	
 		
 	private Consola() {
-		//Evito que se cree el constructor por defecto
+		
 	}
 	
 	public static void mostrarMenu() {
-		mostrarCabecera("GestiÃ³n de clientes");
+		mostrarCabecera("Reservas de aulas");
 		for (Opcion opcion: Opcion.values()) {
 			System.out.println(opcion);
 		}
@@ -26,46 +32,49 @@ public class Consola {
 	public static int elegirOpcion() {
 		int ordinalOpcion;
 		do {
-			System.out.print("\nElige una opciÃ³n: ");
+			System.out.print("\nElige una opción: ");
 			ordinalOpcion = Entrada.entero();
 		} while (!Opcion.esOrdinalValido(ordinalOpcion));
 		return ordinalOpcion;
 	}
+
+	public static Aula leerAula() {
+		
+		Aula aula = new Aula(leerNombreAula());
+		return aula;
+	}
+
+	public static String leerNombreAula() {
+		System.out.print("Introduce el nombre del aula: ");
+		String nombre = Entrada.cadena();
+		return nombre;
+	}
 	
-	public static Aula leerCliente() {
+	public static Profesor leerProfesor() {
 		System.out.print("Introduce el nombre: ");
 		String nombre = Entrada.cadena();
-		System.out.print("Introduce los apellidos: ");
-		String apellidos = Entrada.cadena();
-		System.out.print("Introduce el dni: ");
-		String dni = Entrada.cadena();
-		System.out.print("Introduce el telÃ©fono: ");
-		String telefono = Entrada.cadena();
-		System.out.print("Introduce el correo: ");
+		System.out.print("Introduce el email: ");
 		String correo = Entrada.cadena();
-		System.out.print("Introduce la direcciÃ³n: ");
-		String direccion = Entrada.cadena();
-		System.out.print("Introduce la localidad: ");
-		String localidad = Entrada.cadena();
-		System.out.print("Introduce el cÃ³digo postal: ");
-		String codigoPostal = Entrada.cadena();
-		DatosPersonales datosPersonales = new DatosPersonales(nombre, apellidos, dni);
-		DireccionPostal direccionPostal = new DireccionPostal(direccion, localidad, codigoPostal);
-		DatosContacto datosContacto = new DatosContacto(telefono, correo, direccionPostal);
-		return new Aula(datosPersonales, datosContacto);
+		System.out.print("Introduce el teléfono: ");
+		String telefono = Entrada.cadena();
+
+		Profesor profesor = new Profesor(nombre,correo,telefono);
+		return profesor;
+
 	}
-	
-	public static Aula leerDniCliente() {
-		String dni;
-		do {
-			System.out.print("Introduce el dni: ");
-			dni = Entrada.cadena();
-		} while (dni.trim().equals(""));
-		DatosPersonales datosPersonalesDni = new DatosPersonales("Cliente", "1", dni);
-		return new Aula(datosPersonalesDni, DATOS_CONTACTO_FICTICIOS);
+
+	public static Tramo leerTramo() {
+		System.out.print("Introduce Mañana o Tarde: ");
+		String tramoDia = Entrada.cadena();
+		Tramo tramo = new Tramo(tramoDia);
+		return tramo;
 	}
-	
+
+	public static LocalDate leerDia() {
+
+
+	}
 }
 
 
-}
+
