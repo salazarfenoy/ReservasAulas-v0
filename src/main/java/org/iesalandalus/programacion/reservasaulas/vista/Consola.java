@@ -1,8 +1,8 @@
-package vista;
+package org.iesalandalus.programacion.reservasaulas.vista;
 
 import java.time.format.DateTimeFormatter;
 
-import org.iesalandalus.programacion.gestionclientes.modelo.dominio.DatosPersonales;
+
 import org.iesalandalus.programacion.reservasaulas.Aula;
 import org.iesalandalus.programacion.reservasaulas.Profesor;
 import org.iesalandalus.programacion.reservasaulas.Tramo;
@@ -47,6 +47,7 @@ public class Consola {
 	public static String leerNombreAula() {
 		System.out.print("Introduce el nombre del aula: ");
 		String nombre = Entrada.cadena();
+		
 		return nombre;
 	}
 	

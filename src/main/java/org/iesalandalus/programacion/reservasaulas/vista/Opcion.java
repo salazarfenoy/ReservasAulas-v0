@@ -1,4 +1,4 @@
-package vista;
+package org.iesalandalus.programacion.reservasaulas.vista;
 
 
 
